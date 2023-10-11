@@ -2,17 +2,26 @@ import { useState } from "react";
 import { Button, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from "react-native";
 
 const Home = () => {
-    const [vlCalda, setVlCalda] = useState(0);
+    const [volCalda, setVolCalda] = useState(0);
     const [velocidade, setVelocidade] = useState(0);
     const [tempoCinquenta, setTempoCinquenta] = useState(0);
     const [qtBicos, setQtBicos] = useState(0);
     const [largBicos, setLargBicos] = useState(0);
-    const [tmpColeta, setTmpColeta] = useState(0);
-    const [coletarBico, setVoletarBico] = useState(0);
+    const [coletarBico, setColetarBico] = useState(0);
+    const HA = 1000;
 
+    const calculaColetaPBico = () =>{
+        if(volCalda != 0 && velocidade != 0 &&tempoCinquenta != 0 && qtBicos != 0 && largBicos != 0){
+            setColetarBico(litrosBarra/qtBicos);
+        }
+    }
 
-    const calculaValores = () =>{
+    const areaCoberta = () => {
+        return ((qtBicos * largBicos)/100)*50;
+    }
 
+    const litrosBarra = () => {
+        return (areaCoberta*volCalda)/HA;
     }
 
     const kmhParaSegundos50Metros = (kmh) => {
@@ -28,20 +37,24 @@ const Home = () => {
     }
 
     const onChangeVelocidade = (value) => {
-        setVelocidade(value);
-        setTempoCinquenta(kmhParaSegundos50Metros(value))
+        setVelocidade(replaceVirgula(value));
+        setTempoCinquenta(kmhParaSegundos50Metros(value));
     }
 
     const onChangeTempoCinquenta = (value) => {
-        setTempoCinquenta(value);
-        setVelocidade(SegundosParaKm50Metros(value))
+        setTempoCinquenta(replaceVirgula(value));
+        setVelocidade(SegundosParaKm50Metros(value));
+    }
+
+    const replaceVirgula = (value) => {
+        return value.replace(/[^0-9]/g, '.');
     }
     return(
 		<>
                 <SafeAreaView>
                     <View style={styles.row}>
                         <Text>Volume de Calda:</Text>
-                        <TextInput id="vlCalda" style={styles.input} onChangeText={setVlCalda} value={vlCalda} inputMode="numeric"/>
+                        <TextInput id="volCalda" style={styles.input} onChangeText={setVolCalda} value={volCalda} inputMode="numeric" required/>
                         <Text>L/Ha</Text>
                     </View>
                     <View style={styles.row}>
@@ -61,17 +74,17 @@ const Home = () => {
                     </View>
                     <View style={styles.row}>
                         <Text>Largura dos bicos:</Text>
-                        <TextInput id="largBicos" style={styles.input} onChangeText={setLargBicos} value={largBicos} inputMode="numeric"/>
+                        <TextInput id="largBicos" style={styles.input} onChangeText={setLargBicos} value={largBicos} inputMode="numeric" onFocu/>
                         <Text>cm</Text>
                     </View>
                     <View style={styles.row}>
                         <Text>Tempo de coleta:</Text>
-                        <TextInput id="tmpColeta" style={styles.input} onChangeText={setTmpColeta} value={tmpColeta} inputMode="numeric"/>
+                        <TextInput id="tmpColeta" style={styles.input}  value={tempoCinquenta} inputMode="numeric" disabled/>
                         <Text>seg</Text>
                     </View>
                     <View style={styles.row}>
                         <Text>Coletar p/ bico:</Text>
-                        <TextInput id="coletarBico" style={styles.input} onChangeText={setVoletarBico} value={coletarBico} inputMode="numeric"/>
+                        <TextInput id="coletarBico" style={styles.input} onChangeText={setVoletarBico} value={coletarBico} inputMode="numeric" disabled/>
                         <Text>ml</Text>
                     </View>
                 </SafeAreaView>
