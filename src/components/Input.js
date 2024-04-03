@@ -23,7 +23,6 @@ const Input = ({ id, onChangeText, value, keyboardType, unMed, editable, placeho
                     keyboardType={keyboardType}
                     className="border border-gray-300 p-2 rounded-md flex-1 focus:border-blue-500"
                     editable={editable}
-                    style={{ color: 'black' }}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                 />

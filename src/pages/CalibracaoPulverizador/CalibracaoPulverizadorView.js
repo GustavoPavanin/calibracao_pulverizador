@@ -19,7 +19,7 @@ const CalibracaoPulverizadorView = ({
 }) => {
     return (
         <>
-            <View className="p-4 pt-5 ">
+            <View className="p-4 pt-5 bg-white">
                 <View className="py-2">
                     <Input
                         placeholder="Volume de Calda:"
@@ -74,7 +74,7 @@ const CalibracaoPulverizadorView = ({
                     <TouchableOpacity
                         onPress={calculaColetaPBico}
                         title="Calcular"
-                        className="w-full h-12 bg-blue-800 rounded-md items-center justify-center "
+                        className="w-full h-12 bg-blue-500 rounded-md items-center justify-center "
                     >
                         <Text className="text-white font-bold ">Calcular</Text>
                     </TouchableOpacity>
@@ -89,7 +89,7 @@ const CalibracaoPulverizadorView = ({
                     </TouchableOpacity>
                 </View>
             </View>
-            <View className="p-4 flex flex-row">
+            <View className="p-4 flex flex-row bg-white">
                 <View className="flex-1 p-4">
                     <Text className="text-center pb-3">Tempo de coleta:</Text>
                     <Text className="text-3xl text-center">{tempoColeta}</Text>
