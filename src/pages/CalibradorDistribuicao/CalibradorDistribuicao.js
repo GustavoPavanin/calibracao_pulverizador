@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
-import Input from '../components/Input';
-import '../constants/fatorMotoraMovida';
-import fatorMotoraMovida from '../constants/fatorMotoraMovida';
+import Input from '../../components/Input';
+import fatorMotoraMovida from '../../constants/fatorMotoraMovida';
 const CalibradorDistribuicao = () => {
     const [motora, setMotora] = useState('');
     const [movida, setMovida] = useState('');
