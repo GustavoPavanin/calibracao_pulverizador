@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import LoginView from './LoginView';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import firebase from '../../config/firebase';
-import AS_USER from '@react-native-async-storage/async-storage';
 import constants from '../../components/components.constants';
+
+//TODO essa funcionalidade não vai continuar a ser impormentada por enquanto
+// a branch versao-login-firebase tem a funcionalidade semi-pronta
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');

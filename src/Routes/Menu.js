@@ -5,21 +5,15 @@ import {
     createDrawerNavigator,
 } from '@react-navigation/drawer';
 import Home from '../pages/Home/Home';
-import CalibradorDistribuicao from '../pages/CalibradorDistribuicao';
 import CalibraCaoPulverizador from '../pages/CalibracaoPulverizador/CalibracaoPulverizador';
+import CalculadoraAdubacao from '../pages/CalculadoraAdubacao/CalculadoraAdubacao';
 import { Text } from 'react-native';
-import AS_USER from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 const CustomDrawerContent = (props) => {
-    const handleLogout = async () => {
-        AS_USER.removeItem('user');
-        props.navigation.pop();
-    };
     return (
         <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
-            <DrawerItem label="Sair" onPress={handleLogout} />
         </DrawerContentScrollView>
     );
 };
@@ -37,6 +31,13 @@ const Menu = () => {
                     component={CalibraCaoPulverizador}
                     options={{
                         drawerLabel: ({ focused }) => <Text>Calibração de pulverizador</Text>,
+                    }}
+                />
+                <Drawer.Screen
+                    name="Regulagem de adubação"
+                    component={CalculadoraAdubacao}
+                    options={{
+                        drawerLabel: ({ focused }) => <Text>Regulagem de adubação</Text>,
                     }}
                 />
                 {/* <Drawer.Screen
