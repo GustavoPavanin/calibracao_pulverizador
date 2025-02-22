@@ -1,12 +1,12 @@
 import {
     DrawerContentScrollView,
-    DrawerItem,
     DrawerItemList,
     createDrawerNavigator,
 } from '@react-navigation/drawer';
 import Home from '../pages/Home/Home';
 import CalibraCaoPulverizador from '../pages/CalibracaoPulverizador/CalibracaoPulverizador';
 import CalculadoraAdubacao from '../pages/CalculadoraAdubacao/CalculadoraAdubacao';
+import RegraDeTres from '../pages/RegraDeTres/RegraDeTres';
 import { Text } from 'react-native';
 
 const Drawer = createDrawerNavigator();
@@ -38,6 +38,13 @@ const Menu = () => {
                     component={CalculadoraAdubacao}
                     options={{
                         drawerLabel: ({ focused }) => <Text>Regulagem de adubação</Text>,
+                    }}
+                />
+                <Drawer.Screen
+                    name="Regra de Três"
+                    component={RegraDeTres}
+                    options={{
+                        drawerLabel: ({ focused }) => <Text>Regra de Três Simples</Text>,
                     }}
                 />
                 {/* <Drawer.Screen

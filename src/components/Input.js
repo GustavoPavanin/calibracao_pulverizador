@@ -14,7 +14,7 @@ const Input = ({ id, onChangeText, value, keyboardType, unMed, editable, placeho
 
     return (
         <View className="w-full relative">
-            <Text className="text-gray-600 ">{placeholder}</Text>
+            {placeholder ? <Text className="text-gray-600 ">{placeholder}</Text> : ''}
             <View className="relative flex flex-row items-center">
                 <TextInput
                     id={id}
