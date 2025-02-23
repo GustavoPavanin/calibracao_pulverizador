@@ -30,7 +30,7 @@ const CalculadoraAdubacaoView = ({
                         id="taxaAplicacao"
                         onChangeText={onChangeTaxaAplicacao}
                         value={taxaAplicacao}
-                        keyboardType="decimal-pad"
+                        keyboardType="numeric"
                         unMed="kg/ha"
                     />
                 </View>
@@ -40,7 +40,7 @@ const CalculadoraAdubacaoView = ({
                         id="larguraImplemento"
                         onChangeText={onChangeLarguraImplemento}
                         value={larguraImplemento}
-                        keyboardType="number-pad"
+                        keyboardType="numeric"
                         unMed="m"
                     />
                 </View>
@@ -50,7 +50,7 @@ const CalculadoraAdubacaoView = ({
                         id="velocidadeTrabalho"
                         onChangeText={onChangeVelocidadeTrabalho}
                         value={velocidadeTrabalho}
-                        keyboardType="number-pad"
+                        keyboardType="numeric"
                         unMed="km/h"
                     />
                 </View>
@@ -60,7 +60,7 @@ const CalculadoraAdubacaoView = ({
                         id="quantidadeSecoes"
                         onChangeText={onChangeQuantidadeSecoes}
                         value={quantidadeSecoes}
-                        keyboardType="number-pad"
+                        keyboardType="numeric"
                         unMed="un"
                     />
                 </View>
@@ -70,7 +70,7 @@ const CalculadoraAdubacaoView = ({
                         id="tempoColeta"
                         onChangeText={onChangeTempoColeta}
                         value={tempoColeta}
-                        keyboardType="number-pad"
+                        keyboardType="numeric"
                         unMed="seg"
                     />
                 </View>
@@ -80,7 +80,7 @@ const CalculadoraAdubacaoView = ({
                         id="distanciaProva"
                         onChangeText={onChangeDistanciaProva}
                         value={distanciaProva}
-                        keyboardType="number-pad"
+                        keyboardType="numeric"
                         unMed="m"
                     />
                 </View>

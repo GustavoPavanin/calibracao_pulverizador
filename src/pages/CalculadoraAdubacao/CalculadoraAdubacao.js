@@ -27,7 +27,7 @@ const CalculadoraAdubacao = () => {
             volumeDaColeta = formulaTaxaDeAplicacao().toFixed(3);
         }
         var results = {};
-        results['Volume de Coleta'] = volumeDaColeta.toString();
+        results['Volume de Coleta'] = volumeDaColeta.toString() + ' kg';
         if (distanciaProva > 0) {
             const velocidadeMS = velocidadeTrabalho / fatorConversao;
             var tempoProva = distanciaProva / velocidadeMS;
