@@ -18,7 +18,8 @@ const CalibracaoPulverizadorView = ({
     limparCampos,
 }) => {
     return (
-        <>
+        <View className="bg-white px-2 pt-10">
+            <Text className="text-xl font-bold text-gray-800 mb-2">Calibração de adubação</Text>
             <View className="p-4 pt-5 bg-white">
                 <View className="py-2">
                     <Input
@@ -101,7 +102,7 @@ const CalibracaoPulverizadorView = ({
                     <Text className="text-center pt-3">ml</Text>
                 </View>
             </View>
-        </>
+        </View>
     );
 };
 

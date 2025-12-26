@@ -50,7 +50,8 @@ const CalibradorDistribuicao = () => {
     };
 
     return (
-        <View className="px-4 pt-1">
+        <View className="bg-white px-2 pt-10">
+            <Text className="text-xl font-bold text-gray-800 mb-2">Calibração de Distribuição</Text>
             <View className="py-2">
                 <Text>Dose (kg/ha): </Text>
                 <Input id="dose" onChangeText={onChangeDose} value={dose} keyboardType="numeric" />

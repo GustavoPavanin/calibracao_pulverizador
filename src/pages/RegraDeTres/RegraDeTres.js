@@ -1,58 +1,59 @@
 import { useState } from 'react';
-import { Keyboard } from 'react-native';
 import RegraDeTresView from './RegraDeTresView';
 
 const RegraDeTres = () => {
-    const [valorUm, setValorUm] = useState('');
-    const [estaPara, setEstaPara] = useState('');
-    const [valorDois, setValorDois] = useState('');
-    const [valorX, setValorX] = useState('');
+    const [a, setA] = useState('');
+    const [b, setB] = useState('');
+    const [c, setC] = useState('');
+    const [resultado, setResultado] = useState(null);
+    const [inversamente, setInversamente] = useState(false);
 
-    const onChangeValorUm = (value) => {
-        setValorUm(value);
-    };
-    const onChangeEstaPara = (value) => {
-        setEstaPara(value);
-    };
-    const onChangeValorDois = (value) => {
-        setValorDois(value);
-    };
-    const calcularX = () => {
-        if (
-            isNotNullOrEmpty(valorUm) &&
-            isNotNullOrEmpty(valorDois) &&
-            isNotNullOrEmpty(estaPara)
-        ) {
-            const x = (estaPara * valorDois) / valorUm;
-            setValorX(x);
-        } else {
-            setValorX('');
+    function calcular() {
+        const nA = parseFloat(a.replace(',', '.'));
+        const nB = parseFloat(b.replace(',', '.'));
+        const nC = parseFloat(c.replace(',', '.'));
+
+        if (isNaN(nA) || isNaN(nB) || isNaN(nC)) {
+            setResultado(null);
+            return;
         }
-        return;
-    };
 
-    const isNotNullOrEmpty = (value) => {
-        if (value == null || value == '') return false;
-        return true;
-    };
+        let x;
+        if (inversamente) {
+            // Regra de 3 inversa: A * B = C * X
+            x = (nA * nB) / nC;
+        } else {
+            // Regra de 3 simples: A / B = C / X
+            x = (nB * nC) / nA;
+        }
+
+        setResultado(x.toFixed(2));
+    }
     const limparCampos = () => {
-        setValorUm('');
-        setEstaPara('');
-        setValorDois('');
-        setValorX('');
+        setA('');
+        setB('');
+        setC('');
+        setResultado(null);
+        setInversamente(false);
     };
 
+    const setValorInversamente = () => {
+        setInversamente(!inversamente);
+    };
     return (
         <RegraDeTresView
-            valorUm={valorUm}
-            onChangeValorUm={onChangeValorUm}
-            estaPara={estaPara}
-            onChangeEstaPara={onChangeEstaPara}
-            valorDois={valorDois}
-            onChangeValorDois={onChangeValorDois}
-            valorX={valorX}
-            calcularX={calcularX}
+            a={a}
+            b={b}
+            c={c}
+            resultado={resultado}
+            inversamente={inversamente}
+            calcular={calcular}
             limparCampos={limparCampos}
+            setInversamente={setValorInversamente}
+            setA={setA}
+            setB={setB}
+            setC={setC}
+            setResultado={setResultado}
         />
     );
 };

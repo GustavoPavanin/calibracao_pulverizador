@@ -22,7 +22,8 @@ const CalculadoraAdubacaoView = ({
     calculatedResults,
 }) => {
     return (
-        <>
+        <View className="bg-white px-2 pt-10">
+            <Text className="text-xl font-bold text-gray-800 mb-2">Regulagem de adubação</Text>
             <View className="p-4 pt-5 bg-white">
                 <View className="py-2">
                     <Input
@@ -109,7 +110,7 @@ const CalculadoraAdubacaoView = ({
                 onClose={() => setModalVisible(false)}
                 results={calculatedResults}
             />
-        </>
+        </View>
     );
 };
 

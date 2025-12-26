@@ -1,95 +1,101 @@
-import { TouchableOpacity, Text, View } from 'react-native';
-import Input from '../../components/Input';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Switch,
+    KeyboardAvoidingView,
+    Platform,
+} from 'react-native';
 
-const RegraDeTresView = ({
-    valorUm,
-    onChangeValorUm,
-    estaPara,
-    onChangeEstaPara,
-    valorDois,
-    onChangeValorDois,
-    valorX,
-    calcularX,
+export default function RegraDeTresView({
+    a,
+    b,
+    c,
+    resultado,
+    inversamente,
+    calcular,
     limparCampos,
-}) => {
+    setInversamente,
+    setA,
+    setB,
+    setC,
+}) {
     return (
-        <>
-            <View className="p-4 pt-5 bg-white">
-                <View className="py-2">
-                    <Input
-                        placeholder=""
-                        id="valorUm"
-                        onChangeText={onChangeValorUm}
-                        value={valorUm}
-                        keyboardType="numeric"
-                        unMed="A"
-                    />
-                </View>
-            </View>
-            <View className="p-2">
-                <Text className="text-center">ESTÁ PARA</Text>
-            </View>
-            <View className="p-4 pt-5 bg-white">
-                <View className="py-2">
-                    <Input
-                        placeholder=""
-                        id="estaPara"
-                        onChangeText={onChangeEstaPara}
-                        value={estaPara}
-                        keyboardType="numeric"
-                        unMed="B"
-                    />
-                </View>
+        <KeyboardAvoidingView
+            className="flex-1 bg-white px-6 pt-10"
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        >
+            <Text className="text-xl font-bold text-gray-800 mb-6">Regra de 3</Text>
+
+            {/* Switch inversamente proporcional */}
+            <View className="flex-row items-center mb-6">
+                <Switch value={inversamente} onChange={setInversamente} />
+                <Text className="ml-3 text-gray-700">É inversamente proporcional</Text>
             </View>
 
-            <View className="p-2">
-                <Text className="text-center">ASSIM COMO</Text>
-            </View>
-            <View className="p-4 pt-5 bg-white">
-                <View className="py-2">
-                    <Input
-                        placeholder=""
-                        id="valorDois"
-                        onChangeText={onChangeValorDois}
-                        value={valorDois}
-                        keyboardType="numeric"
-                        unMed="C"
-                    />
-                </View>
-            </View>
-            <View className="py-2">
-                <Text className="text-center ">ESTÁ PARA</Text>
-            </View>
-            <View className="p-4 pt-5 bg-white">
-                <View className="py-2">
-                    <Text className="text-3xl text-center bg-blue-500 rounded-md text-white font-bold">
-                        {valorX}
-                    </Text>
-                </View>
+            <View className="flex-row justify-between mb-6">
+                <TextInput
+                    className="border-b border-gray-400 text-center text-lg w-24"
+                    keyboardType="numeric"
+                    value={a}
+                    onChangeText={setA}
+                    placeholder="A"
+                    id="a"
+                />
+
+                <Text className="text-lg text-gray-600 self-end">é igual a</Text>
+
+                <TextInput
+                    className="border-b border-gray-400 text-center text-lg w-24"
+                    keyboardType="numeric"
+                    value={b}
+                    onChangeText={setB}
+                    placeholder="B"
+                    id="b"
+                />
             </View>
 
-            <View className="p-4 pt-5 bg-white">
-                <View className="pt-10 pb-4">
-                    <TouchableOpacity
-                        onPress={calcularX}
-                        title="Calcular"
-                        className="w-full h-12 bg-blue-500 rounded-md items-center justify-center "
-                    >
-                        <Text className="text-white font-bold ">Calcular</Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <TouchableOpacity
-                        onPress={limparCampos}
-                        title="Limpar"
-                        className="w-full h-12 bg-gray-600 rounded-md items-center justify-center "
-                    >
-                        <Text className="text-white font-bold ">Limpar</Text>
-                    </TouchableOpacity>
-                </View>
+            <View className="flex-row justify-center mt-5 mb-2">
+                <Text className="text-lg text-gray-600">Então</Text>
             </View>
-        </>
+
+            <View className="flex-row justify-between items-end mb-10">
+                <TextInput
+                    className="border-b border-gray-400 text-center text-lg w-24"
+                    keyboardType="numeric"
+                    value={c}
+                    onChangeText={setC}
+                    placeholder="C"
+                    id="c"
+                />
+                <Text className="text-lg text-gray-600 self-end">é igual a</Text>
+
+                {resultado && (
+                    <View className="mt-8 items-center">
+                        <Text className="text-3xl font-bold text-lime-600 mt-2">{resultado}</Text>
+                    </View>
+                )}
+                {!resultado && <Text className="text-3xl font-bold text-blue-500 mt-2">X</Text>}
+            </View>
+
+            <TouchableOpacity
+                className=" bg-blue-500 py-4 rounded-lg items-center mb-3"
+                title="Calcular"
+                onPress={calcular}
+            >
+                <Text className="text-white font-bold text-lg">CALCULAR</Text>
+            </TouchableOpacity>
+
+            <View>
+                <TouchableOpacity
+                    onPress={limparCampos}
+                    title="Limpar"
+                    className="w-full h-12 bg-gray-600 rounded-md items-center justify-center "
+                >
+                    <Text className="text-white font-bold ">Limpar</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
     );
-};
-
-export default RegraDeTresView;
+}
