@@ -8,6 +8,7 @@ import CalibraCaoPulverizador from '../pages/CalibracaoPulverizador/CalibracaoPu
 import CalculadoraAdubacao from '../pages/CalculadoraAdubacao/CalculadoraAdubacao';
 import RegraDeTres from '../pages/RegraDeTres/RegraDeTres';
 import { Text } from 'react-native';
+import CalculadoraCalda from '../pages/CalculadoraCalda/CalculadoraCalda';
 
 const Drawer = createDrawerNavigator();
 
@@ -49,6 +50,13 @@ export default function Menu() {
                 component={RegraDeTres}
                 options={{
                     drawerLabel: () => <Text>Regra de Três Simples</Text>,
+                }}
+            />
+            <Drawer.Screen
+                name="Calculadora de calda"
+                component={CalculadoraCalda}
+                options={{
+                    drawerLabel: () => <Text>Calculadora de calda</Text>,
                 }}
             />
         </Drawer.Navigator>
