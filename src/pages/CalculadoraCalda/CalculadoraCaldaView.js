@@ -61,6 +61,17 @@ const CalculadoraCaldaView = ({
                             onChangeText={(v) => setTituloImpressao(v)}
                         />
                         {/* Cabeçalho */}
+                        <View className="flex-row bg-cyan-500 px-3 py-2 border border-gray-300">
+                            <Text className="w-[33%] text-white text-xs font-semibold">
+                                Volume {volume} L
+                            </Text>
+                            <Text className="w-[33%] text-white text-xs font-semibold text-center">
+                                Taxa {taxa} L/ha
+                            </Text>
+                            <Text className="w-[33%] text-white text-xs font-semibold text-center">
+                                Área {area.toFixed(2)} ha
+                            </Text>
+                        </View>
                         <View className="flex-row bg-cyan-500 px-3 py-2">
                             <Text className="w-[30%] text-white text-xs font-semibold">
                                 Produto
@@ -86,7 +97,9 @@ const CalculadoraCaldaView = ({
                             >
                                 {/* Produto */}
                                 <TextInput
-                                    className="w-[30%] text-xs bg-white border border-gray-300 rounded-md px-2 py-1"
+                                    multiline
+                                    textAlignVertical="top"
+                                    className="w-[26%] min-h-[36px] text-xs bg-white border border-gray-300 rounded-md px-2 py-1"
                                     placeholder="Produto"
                                     value={p.produto}
                                     onChangeText={(v) => atualizarProduto(p.id, 'produto', v)}

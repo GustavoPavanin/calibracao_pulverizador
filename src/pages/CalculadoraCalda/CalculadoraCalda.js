@@ -59,6 +59,7 @@ export default function CalculadoraCalda() {
         setTaxa('');
         setProdutos([{ id: 1, produto: '', doseHa: '', unidade: 'L', resultado: 0 }]);
         area = 0;
+        setTituloImpressao('');
         //sum(valor ref: decodeURI)
     }
 
