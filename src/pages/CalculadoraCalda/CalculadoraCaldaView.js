@@ -55,7 +55,7 @@ const CalculadoraCaldaView = ({
                 <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 1 }}>
                     <View className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden mb-6">
                         <TextInput
-                            className="w-[100%] text-xs font-bold bg-cyan-100 rounded-md px-3 py-2 text-center"
+                            className="w-[100%] text-xs font-bold bg-blue-400 rounded-md px-3 py-2 text-center"
                             placeholder="Título da receita"
                             value={tituloImpressao}
                             onChangeText={(v) => setTituloImpressao(v)}

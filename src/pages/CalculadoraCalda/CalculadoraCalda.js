@@ -47,15 +47,7 @@ export default function CalculadoraCalda() {
         try {
             const uri = await viewShotRef.current.capture();
             await MediaLibrary.requestPermissionsAsync();
-            const asset = await MediaLibrary.createAssetAsync(uri);
-            const albumName = 'Formulas';
-            let album = await MediaLibrary.getAlbumAsync(albumName);
-
-            if (!album) {
-                album = await MediaLibrary.createAlbumAsync(albumName, asset, false);
-            } else {
-                await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
-            }
+            await MediaLibrary.saveToLibraryAsync(uri);
             setModalExportarVisivel(true);
         } catch (e) {
             Alert.alert('Erro', 'Não foi possível exportar a imagem');
