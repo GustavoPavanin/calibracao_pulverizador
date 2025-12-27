@@ -12,9 +12,23 @@ export default function CalculadoraCalda() {
         { id: 1, produto: '', doseHa: '', unidade: 'L', resultado: 0 },
     ]);
     const [modalExportarVisivel, setModalExportarVisivel] = useState(false);
+    const [areaManual, setAreaManual] = useState('');
+    const [usarAreaManual, setUsarAreaManual] = useState(false);
 
-    var area = Number(volume) / Number(taxa) || 0;
+    function calcularArea() {
+        if (usarAreaManual) {
+            return Number(areaManual) || 0;
+        }
 
+        const v = Number(volume);
+        const t = Number(taxa);
+
+        if (!v || !t) return 0;
+
+        return v / t;
+    }
+
+    var area = calcularArea();
     function calcular() {
         const atualizados = produtos.map((produto) => {
             const dose = Number(produto.doseHa) || 0;
@@ -60,6 +74,7 @@ export default function CalculadoraCalda() {
         setProdutos([{ id: 1, produto: '', doseHa: '', unidade: 'L', resultado: 0 }]);
         area = 0;
         setTituloImpressao('');
+        setAreaManual('');
         //sum(valor ref: decodeURI)
     }
 
@@ -81,6 +96,10 @@ export default function CalculadoraCalda() {
             setTituloImpressao={setTituloImpressao}
             modalExportarVisivel={modalExportarVisivel}
             setModalExportarVisivel={setModalExportarVisivel}
+            areaManual={areaManual}
+            setAreaManual={setAreaManual}
+            usarAreaManual={usarAreaManual}
+            setUsarAreaManual={setUsarAreaManual}
         />
     );
 }

@@ -1,4 +1,13 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+    Alert,
+    Modal,
+    Switch,
+} from 'react-native';
 import ViewShot from 'react-native-view-shot';
 
 const CalculadoraCaldaView = ({
@@ -18,10 +27,14 @@ const CalculadoraCaldaView = ({
     setTituloImpressao,
     modalExportarVisivel,
     setModalExportarVisivel,
+    areaManual,
+    setAreaManual,
+    usarAreaManual,
+    setUsarAreaManual,
 }) => {
     return (
         <>
-            <ScrollView className="flex-1 bg-white px-4 pt-6">
+            <ScrollView className="flex-1 bg-white px-4 pt-10">
                 <Text className="text-xl font-bold text-center mb-6">Calculadora de Calda</Text>
 
                 {/* Inputs principais */}
@@ -46,11 +59,27 @@ const CalculadoraCaldaView = ({
                         />
                     </View>
                 </View>
-
-                <Text className="text-center text-gray-700 mb-4">
-                    Área calculada: <Text className="font-bold">{area.toFixed(2)} ha</Text>
-                </Text>
-
+                <View className="flex-row items-center justify-center mb-4">
+                    <Switch value={usarAreaManual} onValueChange={setUsarAreaManual} />
+                    <Text className="ml-2 text-gray-700">Informar área manualmente</Text>
+                </View>
+                {usarAreaManual && (
+                    <View className="mb-4">
+                        <Text className="text-gray-600 mb-1">Área (ha)</Text>
+                        <TextInput
+                            className="border rounded px-3 py-2"
+                            keyboardType="numeric"
+                            value={areaManual}
+                            onChangeText={setAreaManual}
+                            placeholder="Ex: 5.5"
+                        />
+                    </View>
+                )}
+                {!usarAreaManual && (
+                    <Text className="text-center text-gray-700 mb-4">
+                        Área calculada: <Text className="font-bold">{area.toFixed(2)} ha</Text>
+                    </Text>
+                )}
                 {/* Tabela exportável */}
                 <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 1 }}>
                     <View className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden mb-6">
@@ -62,15 +91,26 @@ const CalculadoraCaldaView = ({
                         />
                         {/* Cabeçalho */}
                         <View className="flex-row bg-cyan-500 px-3 py-2 border border-gray-300">
-                            <Text className="w-[33%] text-white text-xs font-semibold">
-                                Volume {volume} L
-                            </Text>
-                            <Text className="w-[33%] text-white text-xs font-semibold text-center">
-                                Taxa {taxa} L/ha
-                            </Text>
-                            <Text className="w-[33%] text-white text-xs font-semibold text-center">
-                                Área {area.toFixed(2)} ha
-                            </Text>
+                            {!usarAreaManual && (
+                                <>
+                                    <Text className="w-[33%] text-white text-xs font-semibold">
+                                        Volume {volume} L
+                                    </Text>
+                                    <Text className="w-[33%] text-white text-xs font-semibold text-center">
+                                        Taxa {taxa} L/ha
+                                    </Text>
+                                    <Text className="w-[33%] text-white text-xs font-semibold text-center">
+                                        Área {area.toFixed(2)} ha
+                                    </Text>
+                                </>
+                            )}
+                            {usarAreaManual && (
+                                <>
+                                    <Text className="w-[100%] text-white text-xs font-semibold text-center">
+                                        Área {area.toFixed(2)} ha
+                                    </Text>
+                                </>
+                            )}
                         </View>
                         <View className="flex-row bg-cyan-500 px-3 py-2">
                             <Text className="w-[30%] text-white text-xs font-semibold">
